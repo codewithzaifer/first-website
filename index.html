@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honeymoon Hearts - Find Your Perfect Match in Bhubaneswar & Puri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffd166;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #333;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --pink: #ff7eb9;
+            --purple: #d16ba5;
+            --blue: #4361ee;
+            --deep-pink: #e91e63;
+            --gold: #ffb300;
+            --header-font: 'Playfair Display', serif;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-family: var(--body-font);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--header-font);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Terms Modal */
+        .terms-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .terms-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .terms-header {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+
+            .terms-header h2 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+        .terms-body {
+            padding: 30px;
+            line-height: 1.8;
+        }
+
+        .terms-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+            .terms-section h3 {
+                color: var(--dark);
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+
+            .terms-section p {
+                margin-bottom: 15px;
+                color: #555;
+            }
+
+        .terms-footer {
+            padding: 0 30px 30px;
+            text-align: center;
+        }
+
+        .terms-agree {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+            .terms-agree input {
+                width: 20px;
+                height: 20px;
+            }
+
+            .terms-agree label {
+                font-weight: 500;
+                color: var(--dark);
+            }
+
+        .terms-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+            .terms-btn:hover {
+                background: #ff5252;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            }
+
+            .terms-btn:disabled {
+                background: #ccc;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+            }
+
+        /* Heart Animation */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 126, 185, 0.6);
+            animation: float 8s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Heart Animation Overlay */
+        .heart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+            .heart-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .heart-overlay .heart-animation {
+                font-size: 8rem;
+                color: var(--primary);
+                animation: pulse 1.5s ease-out;
+                text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+            }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.8;
+                filter: brightness(1.5);
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+                filter: brightness(2);
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+                filter: brightness(2.5);
+            }
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .scrolled {
+            background: rgba(26, 26, 46, 0.98);
+            padding: 0.8rem 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: var(--header-font);
+        }
+
+            .logo i {
+                color: var(--primary);
+                margin-right: 10px;
+                font-size: 2rem;
+                transition: var(--transition);
+            }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+            nav ul li {
+                margin: 0 15px;
+            }
+
+                nav ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: 500;
+                    padding: 8px 15px;
+                    border-radius: 30px;
+                    transition: var(--transition);
+                    font-family: var(--body-font);
+                }
+
+                    nav ul li a:hover {
+                        background: var(--primary);
+                        color: white;
+                    }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            font-family: var(--body-font);
+        }
+
+        #heroVideo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .btn-hero {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            display: inline-block;
+            transition: var(--transition);
+            text-decoration: none;
+            font-family: var(--body-font);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+            .btn-hero:hover {
+                background: #ffc14d;
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
+            }
+
+        .location-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            font-weight: 500;
+            font-family: var(--body-font);
+        }
+
+            .location-tag i {
+                margin-right: 8px;
+                color: var(--accent);
+            }
+
+        /* About Us Section */
+        .about {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+            .about-text h2 {
+                font-size: 2.5rem;
+                color: var(--dark);
+                margin-bottom: 20px;
+            }
+
+            .about-text p {
+                margin-bottom: 20px;
+                color: #555;
+                line-height: 1.8;
+                font-family: var(--body-font);
+            }
+
+        /* New Experience Section */
+        .experiences {
+            padding: 60px 0;
+        }
+
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: var(--transition);
+            position: relative;
+            transform: translateY(0);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+            .experience-card:hover {
+                transform: translateY(-15px) scale(1.03);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                z-index: 2;
+            }
+
+        .exp-img {
+            height: 500px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .exp-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+            .exp-info h3 {
+                margin-bottom: 10px;
+                color: var(--dark);
+                font-size: 1.5rem;
+            }
+
+            .exp-info p {
+                color: #666;
+                font-size: 0.95rem;
+                font-family: var(--body-font);
+            }
+
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+                color: var(--dark);
+                margin-bottom: 15px;
+            }
+
+            .section-title p {
+                color: #666;
+                max-width: 700px;
+                margin: 0 auto;
+                font-family: var(--body-font);
+            }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+            .feature-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(90deg, var(--pink), var(--purple));
+            }
+
+            .feature-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), #2a9d8f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            font-family: var(--body-font);
+        }
+
+        /* Profiles Section */
+        .profiles {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .profiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .profile-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+            transform: translateY(0);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+            .profile-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                z-index: 2;
+            }
+
+        .profile-img {
+            height: 300px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-info {
+            padding: 25px;
+            background: white;
+        }
+
+            .profile-info h3 {
+                margin-bottom: 5px;
+                color: var(--dark);
+            }
+
+            .profile-info p {
+                color: #666;
+                margin-bottom: 15px;
+                font-family: var(--body-font);
+            }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #555;
+            font-family: var(--body-font);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #4ecdc4 0%, #2a9d8f 100%);
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+            .testimonial-card:hover {
+                transform: translateY(-10px);
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .testimonial-card p {
+                font-style: italic;
+                margin-bottom: 20px;
+                font-family: var(--body-font);
+            }
+
+        .client {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            margin-right: 15px;
+            border: 2px solid white;
+        }
+
+        .client-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .client-info p {
+            font-family: var(--body-font);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-partner {
+            background: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80') center/cover;
+            border-radius: 15px;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+            .contact-partner::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top, rgba(26, 26, 46, 0.9), transparent);
+            }
+
+        .partner-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            width: 100%;
+        }
+
+            .partner-content h3 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .partner-content p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+                max-width: 500px;
+                font-family: var(--body-font);
+            }
+
+        .partner-btn {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            display: inline-block;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--body-font);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+            .partner-btn:hover {
+                background: #ffc14d;
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
+            }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+            .info-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            }
+
+            .info-card h3 {
+                margin-bottom: 20px;
+                color: var(--dark);
+                font-size: 1.5rem;
+            }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+            .info-item i {
+                font-size: 1.5rem;
+                color: var(--primary);
+                margin-right: 15px;
+                min-width: 30px;
+            }
+
+        .info-content h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .info-content p {
+            font-family: var(--body-font);
+        }
+
+        .terms-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .terms-link a {
+                color: var(--primary);
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+                font-family: var(--body-font);
+            }
+
+                .terms-link a:hover {
+                    text-decoration: underline;
+                }
+
+        /* WhatsApp Chat Box */
+        .whatsapp-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-box {
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+            .chat-box:hover {
+                background: #128C7E;
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+            }
+
+            .chat-box i {
+                font-size: 1.8rem;
+                margin-right: 10px;
+            }
+
+            .chat-box span {
+                font-weight: 600;
+                font-size: 1.1rem;
+                font-family: var(--body-font);
+            }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 5% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+            .footer-col h3::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50px;
+                height: 3px;
+                background: var(--primary);
+            }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+            .footer-col ul li {
+                margin-bottom: 15px;
+            }
+
+                .footer-col ul li a {
+                    color: #ddd;
+                    text-decoration: none;
+                    transition: var(--transition);
+                    font-family: var(--body-font);
+                }
+
+                    .footer-col ul li a:hover {
+                        color: var(--accent);
+                        padding-left: 5px;
+                    }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+            .stat-item .number {
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: var(--accent);
+            }
+
+            .stat-item .label {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                font-family: var(--body-font);
+            }
+
+        .chat-now-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .chat-now-box h4 {
+                margin-bottom: 15px;
+                font-size: 1.3rem;
+            }
+
+        .chat-now-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            font-family: var(--body-font);
+        }
+
+            .chat-now-btn:hover {
+                background: #ff5252;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-family: var(--body-font);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+
+            nav {
+                margin: 20px 0;
+            }
+
+                nav ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                    nav ul li {
+                        margin: 5px;
+                    }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                text-align: center;
+                margin-top: 150px;
+            }
+
+            .features-grid,
+            .profiles-container,
+            .testimonial-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-partner {
+                min-height: 400px;
+            }
+            
+            .exp-img {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-hero {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .contact-partner {
+                min-height: 350px;
+            }
+            
+            .exp-img {
+                height: 300px;
+            }
+        }
+        
+        /* Gender Selection Modal */
+        .gender-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gender-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .gender-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .gender-content h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .gender-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .gender-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .gender-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .gender-btn.selected {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .gender-btn i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Terms & Conditions Modal -->
+    <div class="terms-modal" id="termsModal">
+        <div class="terms-content">
+            <div class="terms-header">
+                <h2>Terms & Conditions</h2>
+                <p>Please read and agree to our terms before using Honeymoon Hearts</p>
+            </div>
+            <div class="terms-body">
+                <div class="terms-section">
+                    <h3>1. Contact Disclaimer:</h3>
+                    <p>"This website may display contact information (such as phone numbers) of individuals or representatives for direct communication purposes. We are not responsible for the content, tone, or outcome of any private conversations."</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>2. Privacy & Consent:</h3>
+                    <p>"By choosing to contact any user or representative via phone or messaging app, you agree to do so with respect and consent. Unsolicited, abusive, or inappropriate messages are strictly prohibited."</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>3. Platform Limitation:</h3>
+                    <p>"This platform does not monitor or record off-platform communication. Any harassment, abuse, or fraud conducted via phone is solely the responsibility of the parties involved."</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>4. Safety Advice:</h3>
+                    <p>"Do not share sensitive personal or financial information unless you're completely confident about the person’s identity. Always inform a trusted family member before meeting someone in person."</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>5. Minimum Age Requirement</h3>
+                    <p>Users must be at least 18 years old to register or use this platform. We do not allow minors under any circumstance.</p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3>6. Serious Relationships Only</h3>
+                    <p>This platform is exclusively for individuals seeking serious, long-term relationships that may lead to marriage. Any use of the platform for casual dating, timepass, or harassment is strictly prohibited and may result in immediate account termination.</p>
+                </div>
+            </div>
+            <div class="terms-footer">
+                <div class="terms-agree">
+                    <input type="checkbox" id="agreeCheckbox">
+                    <label for="agreeCheckbox">I agree to the terms and conditions</label>
+                </div>
+                <button class="terms-btn" id="termsContinueBtn" disabled>Continue to Website</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gender Selection Modal -->
+    <div class="gender-modal" id="genderModal">
+        <div class="gender-content">
+            <h3>Help Us Find Your Perfect Match</h3>
+            <p>Please select your gender so we can connect you with compatible partners</p>
+            <div class="gender-options">
+                <button class="gender-btn" id="maleBtn">
+                    <i class="fas fa-male"></i>
+                    Male
+                </button>
+                <button class="gender-btn" id="femaleBtn">
+                    <i class="fas fa-female"></i>
+                    Female
+                </button>
+            </div>
+            <button class="terms-btn" id="genderConfirmBtn" disabled>Continue to Chat</button>
+        </div>
+    </div>
+
+    <!-- Heart Animation Background -->
+    <div class="hearts" id="heartsContainer"></div>
+
+    <!-- Heart Animation Overlay -->
+    <div class="heart-overlay" id="heartOverlay">
+        <div class="heart-animation">❤</div>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="logo">
+            <i class="fas fa-heart"></i>
+            Honeymoon Hearts
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#profiles">Featured Profiles</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video id="heroVideo" autoplay muted loop playsinline>
+            <source src="file:///C:/Users/Aftab/Desktop/hiiii/BACKGROUND.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Find Your Perfect Match in Bhubaneswar & Puri</h1>
+            <p>Honeymoon Hearts connects you with compatible partners based on shared interests, values, and lifestyles. Join thousands of successful couples who found love through our platform.</p>
+            <div class="location-tag">
+                <i class="fas fa-map-marker-alt"></i>
+                Exclusive services available in Bhubaneswar & Puri
+            </div>
+            <a href="#" class="btn-hero" id="findMatchBtn">Find Your Match <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="section-title">
+            <h2>About Honeymoon Hearts</h2>
+            <p>Our mission to create meaningful connections</p>
+        </div>
+        <div class="about-content">
+            <div class="about-image"></div>
+            <div class="about-text">
+                <h2>Creating Lasting Relationships Since 2018</h2>
+                <p>Honeymoon Hearts was founded with a simple yet powerful vision: to help people find authentic, meaningful relationships in a world full of fleeting connections. Our unique algorithm goes beyond surface-level preferences to match you with partners who share your core values and life goals.</p>
+                <p>With over 2 million successful matches and counting, we've perfected the science of compatibility. Our team of relationship experts, psychologists, and data scientists continuously refine our matching process to deliver exceptional results.</p>
+                <p>What sets us apart is our commitment to creating genuine connections. We don't just match profiles - we match people. Our platform facilitates deep conversations and meaningful interactions that lead to lasting relationships.</p>
+            </div>
+        </div>
+
+        <!-- New Experiences Section -->
+        <div class="section-title" style="margin-top: 80px;">
+            <h2>Experience Romantic Moments</h2>
+            <p>Create beautiful memories with your partner</p>
+        </div>
+        <div class="experiences">
+            <div class="experiences-grid">
+                <div class="experience-card">
+                    <div class="exp-img" style="background-image: url('file:///C:/Users/Aftab/Desktop/hiiii/image%20(1).jpg');"></div>
+                    <div class="exp-info">
+                        <h3>Bike Riding</h3>
+                        <p>Explore beautiful landscapes with your partner on exciting bike adventures</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="exp-img" style="background-image: url('file:///C:/Users/Aftab/Desktop/hiiii/Flux_Dev_A_luxurious_candlelight_dinner_scene_in_a_5star_hotel_2.jpg');"></div>
+                    <div class="exp-info">
+                        <h3>Candle Night Dinner</h3>
+                        <p>Romantic dinners under the stars with delicious cuisine and intimate ambiance</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="exp-info">
+                        <h3>Hotel Stay</h3>
+                        <p>Luxurious accommodations for quality time with your special someone</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="exp-img" style="background-image: url('file:///C:/Users/Aftab/Desktop/hiiii/d9dd3eeb-3c5b-4437-9af5-1c38214b55aa.jpg');"></div>
+                    <div class="exp-info">
+                        <h3>Beach View</h3>
+                        <p>Romantic beach walks and sunset views in beautiful Puri</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>Why Choose Honeymoon Hearts</h2>
+            <p>Our unique approach to matchmaking sets us apart from other dating platforms</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Smart Matching</h3>
+                <p>Our advanced algorithm learns your preferences to suggest highly compatible matches.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Verified Profiles</h3>
+                <p>All profiles undergo strict verification to ensure authenticity and safety.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Video Dating</h3>
+                <p>Connect face-to-face with matches through our secure video chat feature.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profiles Section -->
+    <section class="profiles" id="profiles">
+        <div class="section-title">
+            <h2>Featured Profiles</h2>
+            <p>Meet some of our amazing members looking for meaningful connections</p>
+        </div>
+        <div class="profiles-container">
+            <div class="profile-card">
+                <div class="profile-img" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
+                <div class="profile-info">
+                    <h3>Alex, 29</h3>
+                    <p>Software Engineer · Bhubaneswar</p>
+                    <div class="profile-tags">
+                        <span class="tag">Travel</span>
+                        <span class="tag">Photography</span>
+                        <span class="tag">Hiking</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-img" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80');"></div>
+                <div class="profile-info">
+                    <h3>Sophia, 27</h3>
+                    <p>Graphic Designer · Puri</p>
+                    <div class="profile-tags">
+                        <span class="tag">Art</span>
+                        <span class="tag">Cooking</span>
+                        <span class="tag">Yoga</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-card">
+                <div class="profile-img" style="background-image: url('https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
+                <div class="profile-info">
+                    <h3>Michael, 32</h3>
+                    <p>Architect · Bhubaneswar</p>
+                    <div class="profile-tags">
+                        <span class="tag">Reading</span>
+                        <span class="tag">Music</span>
+                        <span class="tag">Skiing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>Real couples who found love through Honeymoon Hearts</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"After years of unsuccessful dating, I joined Honeymoon Hearts and met Sarah. We connected instantly and have been inseparable for 2 years now!"</p>
+                <div class="client">
+                    <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="client-info">
+                        <h4>David & Sarah</h4>
+                        <p>Together since 2021</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"The compatibility matching really works! We were engaged within a year and recently celebrated our first wedding anniversary."</p>
+                <div class="client">
+                    <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
+                    <div class="client-info">
+                        <h4>James & Emma</h4>
+                        <p>Married in 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"As busy professionals, we appreciated how the platform helped us find quality matches. We're now planning our future together!"</p>
+                <div class="client">
+                    <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80');"></div>
+                    <div class="client-info">
+                        <h4>Robert & Mia</h4>
+                        <p>Engaged in 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch with our support team</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-partner">
+                <div class="partner-content">
+                    <h3>Find Your Life Partner</h3>
+                    <p>Connect with compatible matches in Bhubaneswar & Puri and start your journey to lasting love</p>
+                    <a href="#" class="partner-btn" id="contactMatchBtn">Find Your Match Now</a>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-content">
+                            <h4>Our Location</h4>
+                            <p>Bhubaneswar, Odisha</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-comments"></i>
+                        <div class="info-content">
+                            <h4>Chat With Us</h4>
+                            <p>+91 9933672981</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-content">
+                            <h4>Email Us</h4>
+                            <p>contact@honeymoonhearts.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>Chatting Time</h3>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="info-content">
+                            <h4>Monday - Sunday</h4>
+                            <p>8:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Honeymoon Hearts</h3>
+                <p>Creating meaningful connections since 2018. Our mission is to help you find authentic relationships based on compatibility and shared values.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="number">2M+</div>
+                        <div class="label">Matches Made</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">500+</div>
+                        <div class="label">Happy Couples</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">98%</div>
+                        <div class="label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">24/7</div>
+                        <div class="label">Support</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#profiles">Featured Profiles</a></li>
+                    <li><a href="#testimonials">Success Stories</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Safety Guidelines</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Start Chatting Now</h3>
+                <p>Connect with our relationship experts to find your perfect match</p>
+                <div class="chat-now-box">
+                    <h4>Ready to find your soulmate?</h4>
+                    <button class="chat-now-btn" id="footerChatBtn">Chat with Us Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Honeymoon Hearts. All rights reserved. | Serving Bhubaneswar & Puri</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Chat Box -->
+    <div class="whatsapp-chat">
+        <a href="#" class="chat-box" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i>
+            <span>Chat with Us</span>
+        </a>
+    </div>
+
+    <script>
+        // Terms and Conditions Modal
+        const termsModal = document.getElementById('termsModal');
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const termsContinueBtn = document.getElementById('termsContinueBtn');
+        const termsLinkContact = document.getElementById('termsLinkContact');
+        
+        // Gender selection variables
+        const genderModal = document.getElementById('genderModal');
+        const maleBtn = document.getElementById('maleBtn');
+        const femaleBtn = document.getElementById('femaleBtn');
+        const genderConfirmBtn = document.getElementById('genderConfirmBtn');
+        let selectedGender = null;
+        const whatsappNumber = "918597904730";
+        
+        // Show terms modal on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            termsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Enable/disable continue button based on checkbox
+        agreeCheckbox.addEventListener('change', function () {
+            termsContinueBtn.disabled = !this.checked;
+        });
+
+        // Close terms modal and allow access to website
+        termsContinueBtn.addEventListener('click', function () {
+            termsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Reopen terms modal from contact section
+        if (termsLinkContact) {
+            termsLinkContact.addEventListener('click', function (e) {
+                e.preventDefault();
+                termsModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Close modal when clicking outside
+        termsModal.addEventListener('click', function (e) {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartCount = 30;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('heart');
+
+                // Random properties
+                const left = Math.random() * 100;
+                const size = Math.random() * 1 + 0.5;
+                const duration = Math.random() * 5 + 5;
+                const delay = Math.random() * 5;
+
+                heart.style.left = `${left}%`;
+                heart.style.fontSize = `${size}rem`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.animationDelay = `${delay}s`;
+
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Show heart animation overlay
+        function showHeartAnimation() {
+            const heartOverlay = document.getElementById('heartOverlay');
+            heartOverlay.classList.add('active');
+
+            setTimeout(() => {
+                heartOverlay.classList.remove('active');
+            }, 1500);
+        }
+
+        // Gender selection functions
+        maleBtn.addEventListener('click', function() {
+            selectedGender = 'male';
+            maleBtn.classList.add('selected');
+            femaleBtn.classList.remove('selected');
+            genderConfirmBtn.disabled = false;
+        });
+        
+        femaleBtn.addEventListener('click', function() {
+            selectedGender = 'female';
+            femaleBtn.classList.add('selected');
+            maleBtn.classList.remove('selected');
+            genderConfirmBtn.disabled = false;
+        });
+        
+        genderConfirmBtn.addEventListener('click', function() {
+            genderModal.classList.remove('active');
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hello! I'm interested in finding a match. My gender is ${selectedGender}.`;
+            window.open(whatsappUrl, '_blank');
+        });
+        
+        // Function to open gender modal
+        function openGenderModal() {
+            genderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Handle all WhatsApp redirect buttons
+        function setupWhatsAppButtons() {
+            const whatsappButtons = [
+                document.getElementById('whatsappBtn'),
+                document.getElementById('findMatchBtn'),
+                document.getElementById('contactMatchBtn'),
+                document.getElementById('footerChatBtn')
+            ];
+            
+            whatsappButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        openGenderModal();
+                    });
+                }
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            createHearts();
+            setupWhatsAppButtons();
+
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
