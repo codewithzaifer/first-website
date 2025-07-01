@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Honeymoon Hearts - Find Your Perfect Match in Bhubaneswar & Puri</title>
+    <title>Harmony Heart - Find Your Perfect Match in Bhubaneswar & Puri</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -283,29 +283,113 @@
                 transition: var(--transition);
             }
 
-        nav ul {
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn .bar {
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Mobile Navigation - Left Side */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--dark);
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            transition: left 0.4s ease-in-out;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav ul {
+            flex-direction: column;
+            gap: 15px;
+            padding-top: 20px;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+        }
+
+            .mobile-nav ul li a:hover {
+                background: var(--primary);
+                transform: translateX(5px);
+            }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: block;
+        }
+
+        .desktop-nav ul {
             display: flex;
             list-style: none;
         }
 
-            nav ul li {
-                margin: 0 15px;
-            }
+        .desktop-nav ul li {
+            margin: 0 15px;
+        }
 
-                nav ul li a {
-                    color: white;
-                    text-decoration: none;
-                    font-weight: 500;
-                    padding: 8px 15px;
-                    border-radius: 30px;
-                    transition: var(--transition);
-                    font-family: var(--body-font);
-                }
+        .desktop-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-family: var(--body-font);
+        }
 
-                    nav ul li a:hover {
-                        background: var(--primary);
-                        color: white;
-                    }
+        .desktop-nav ul li a:hover {
+            background: var(--primary);
+            color: white;
+        }
 
         /* Hero Section */
         .hero {
@@ -379,22 +463,6 @@
                 background: #ffc14d;
                 transform: translateY(-5px);
                 box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
-            }
-
-        .location-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 20px;
-            border-radius: 30px;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 15px;
-            font-weight: 500;
-            font-family: var(--body-font);
-        }
-
-            .location-tag i {
-                margin-right: 8px;
-                color: var(--accent);
             }
 
         /* About Us Section */
@@ -812,23 +880,6 @@
             font-family: var(--body-font);
         }
 
-        .terms-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-            .terms-link a {
-                color: var(--primary);
-                text-decoration: none;
-                font-weight: 500;
-                transition: var(--transition);
-                font-family: var(--body-font);
-            }
-
-                .terms-link a:hover {
-                    text-decoration: underline;
-                }
-
         /* WhatsApp Chat Box */
         .whatsapp-chat {
             position: fixed;
@@ -1001,90 +1052,6 @@
             font-family: var(--body-font);
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .about-content {
-                flex-direction: column;
-            }
-
-            .about-image {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 15px 5%;
-            }
-
-            nav {
-                margin: 20px 0;
-            }
-
-                nav ul {
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-
-                    nav ul li {
-                        margin: 5px;
-                    }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero {
-                text-align: center;
-                margin-top: 150px;
-            }
-
-            .features-grid,
-            .profiles-container,
-            .testimonial-grid,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-partner {
-                min-height: 400px;
-            }
-            
-            .exp-img {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .btn-hero {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-
-            .contact-partner {
-                min-height: 350px;
-            }
-            
-            .exp-img {
-                height: 300px;
-            }
-        }
-        
         /* Gender Selection Modal */
         .gender-modal {
             position: fixed;
@@ -1158,6 +1125,128 @@
             display: block;
             margin-bottom: 10px;
         }
+        
+        /* Close Button for Gender Modal */
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                text-align: center;
+                margin-top: 1px;
+            }
+
+            .features-grid,
+            .profiles-container,
+            .testimonial-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-partner {
+                min-height: 400px;
+            }
+            
+            .exp-img {
+                height: 350px;
+            }
+            
+            .gender-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-hero {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .contact-partner {
+                min-height: 350px;
+            }
+            
+            .exp-img {
+                height: 300px;
+            }
+            
+            .gender-btn {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .terms-content {
+                width: 95%;
+                max-height: 85vh;
+            }
+            
+            .terms-header {
+                padding: 20px;
+            }
+            
+            .terms-body {
+                padding: 20px;
+            }
+            
+            .terms-footer {
+                padding: 0 20px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1166,7 +1255,7 @@
         <div class="terms-content">
             <div class="terms-header">
                 <h2>Terms & Conditions</h2>
-                <p>Please read and agree to our terms before using Honeymoon Hearts</p>
+                <p>Please read and agree to our terms before using Harmony Heart</p>
             </div>
             <div class="terms-body">
                 <div class="terms-section">
@@ -1212,6 +1301,7 @@
     <!-- Gender Selection Modal -->
     <div class="gender-modal" id="genderModal">
         <div class="gender-content">
+            <button class="modal-close" id="genderCloseBtn">×</button>
             <h3>Help Us Find Your Perfect Match</h3>
             <p>Please select your gender so we can connect you with compatible partners</p>
             <div class="gender-options">
@@ -1240,9 +1330,18 @@
     <header id="mainHeader">
         <div class="logo">
             <i class="fas fa-heart"></i>
-            Honeymoon Hearts
+            Harmony Heart
         </div>
-        <nav>
+        
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Us</a></li>
@@ -1251,21 +1350,29 @@
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
         </nav>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav">
+            <div class="close-btn" id="closeMobileMenu">×</div>
+            <ul>
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#about" class="mobile-nav-link">About Us</a></li>
+                <li><a href="#profiles" class="mobile-nav-link">Featured Profiles</a></li>
+                <li><a href="#testimonials" class="mobile-nav-link">Success Stories</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <video id="heroVideo" autoplay muted loop playsinline>
-            <source src="BACKGROUND.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-walking-in-the-snow-4850-large.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-content">
             <h1>Find Your Perfect Match in Bhubaneswar & Puri</h1>
-            <p>Honeymoon Hearts connects you with compatible partners based on shared interests, values, and lifestyles. Join thousands of successful couples who found love through our platform.</p>
-            <div class="location-tag">
-                <i class="fas fa-map-marker-alt"></i>
-                Exclusive services available in Bhubaneswar & Puri
-            </div>
+            <p>Harmony Heart connects you with compatible partners based on shared interests, values, and lifestyles. Join thousands of successful couples who found love through our platform.</p>
             <a href="#" class="btn-hero" id="findMatchBtn">Find Your Match <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
@@ -1273,14 +1380,14 @@
     <!-- About Us Section -->
     <section class="about" id="about">
         <div class="section-title">
-            <h2>About Honeymoon Hearts</h2>
+            <h2>About Harmony Heart</h2>
             <p>Our mission to create meaningful connections</p>
         </div>
         <div class="about-content">
             <div class="about-image"></div>
             <div class="about-text">
                 <h2>Creating Lasting Relationships Since 2018</h2>
-                <p>Honeymoon Hearts was founded with a simple yet powerful vision: to help people find authentic, meaningful relationships in a world full of fleeting connections. Our unique algorithm goes beyond surface-level preferences to match you with partners who share your core values and life goals.</p>
+                <p>Harmony Heart was founded with a simple yet powerful vision: to help people find authentic, meaningful relationships in a world full of fleeting connections. Our unique algorithm goes beyond surface-level preferences to match you with partners who share your core values and life goals.</p>
                 <p>With over 2 million successful matches and counting, we've perfected the science of compatibility. Our team of relationship experts, psychologists, and data scientists continuously refine our matching process to deliver exceptional results.</p>
                 <p>What sets us apart is our commitment to creating genuine connections. We don't just match profiles - we match people. Our platform facilitates deep conversations and meaningful interactions that lead to lasting relationships.</p>
             </div>
@@ -1294,14 +1401,14 @@
         <div class="experiences">
             <div class="experiences-grid">
                 <div class="experience-card">
-                    <div class="exp-img" style="background-image: url('image (1).jpg');"></div>
+                    <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80');"></div>
                     <div class="exp-info">
                         <h3>Bike Riding</h3>
                         <p>Explore beautiful landscapes with your partner on exciting bike adventures</p>
                     </div>
                 </div>
                 <div class="experience-card">
-                    <div class="exp-img" style="background-image: url('Flux_Dev_A_luxurious_candlelight_dinner_scene_in_a_5star_hotel_2.jpg');"></div>
+                    <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80');"></div>
                     <div class="exp-info">
                         <h3>Candle Night Dinner</h3>
                         <p>Romantic dinners under the stars with delicious cuisine and intimate ambiance</p>
@@ -1315,7 +1422,7 @@
                     </div>
                 </div>
                 <div class="experience-card">
-                    <div class="exp-img" style="background-image: url('d9dd3eeb-3c5b-4437-9af5-1c38214b55aa.jpg');"></div>
+                    <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80');"></div>
                     <div class="exp-info">
                         <h3>Beach View</h3>
                         <p>Romantic beach walks and sunset views in beautiful Puri</p>
@@ -1328,7 +1435,7 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-title">
-            <h2>Why Choose Honeymoon Hearts</h2>
+            <h2>Why Choose Harmony Heart</h2>
             <p>Our unique approach to matchmaking sets us apart from other dating platforms</p>
         </div>
         <div class="features-grid">
@@ -1406,11 +1513,11 @@
     <section class="testimonials" id="testimonials">
         <div class="section-title">
             <h2>Success Stories</h2>
-            <p>Real couples who found love through Honeymoon Hearts</p>
+            <p>Real couples who found love through Harmony Heart</p>
         </div>
         <div class="testimonial-grid">
             <div class="testimonial-card">
-                <p>"After years of unsuccessful dating, I joined Honeymoon Hearts and met Sarah. We connected instantly and have been inseparable for 2 years now!"</p>
+                <p>"After years of unsuccessful dating, I joined Harmony Heart and met Sarah. We connected instantly and have been inseparable for 2 years now!"</p>
                 <div class="client">
                     <div class="client-img" style="background-image: url('https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');"></div>
                     <div class="client-info">
@@ -1477,7 +1584,7 @@
                         <i class="fas fa-envelope"></i>
                         <div class="info-content">
                             <h4>Email Us</h4>
-                            <p>contact@honeymoonhearts.com</p>
+                            <p>contact@harmonyheart.com</p>
                         </div>
                     </div>
                 </div>
@@ -1499,7 +1606,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h3>Honeymoon Hearts</h3>
+                <h3>Harmony Heart</h3>
                 <p>Creating meaningful connections since 2018. Our mission is to help you find authentic relationships based on compatibility and shared values.</p>
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -1549,7 +1656,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Honeymoon Hearts. All rights reserved. | Serving Bhubaneswar & Puri</p>
+            <p>&copy; 2023 Harmony Heart. All rights reserved. | Serving Bhubaneswar & Puri</p>
         </div>
     </footer>
 
@@ -1573,8 +1680,15 @@
         const maleBtn = document.getElementById('maleBtn');
         const femaleBtn = document.getElementById('femaleBtn');
         const genderConfirmBtn = document.getElementById('genderConfirmBtn');
+        const genderCloseBtn = document.getElementById('genderCloseBtn');
         let selectedGender = null;
         const whatsappNumber = "918597904730";
+        
+        // Mobile menu variables
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         
         // Show terms modal on page load
         document.addEventListener('DOMContentLoaded', function () {
@@ -1662,8 +1776,15 @@
         
         genderConfirmBtn.addEventListener('click', function() {
             genderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hello! I'm interested in finding a match. My gender is ${selectedGender}.`;
             window.open(whatsappUrl, '_blank');
+        });
+        
+        // Close gender modal
+        genderCloseBtn.addEventListener('click', function() {
+            genderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
         
         // Function to open gender modal
@@ -1691,10 +1812,28 @@
             });
         }
 
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        // Close mobile menu when clicking links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function () {
             createHearts();
             setupWhatsAppButtons();
+
+            // Mobile menu event listeners
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            closeMobileMenu.addEventListener('click', toggleMobileMenu);
 
             // Header scroll effect
             const header = document.getElementById('mainHeader');
